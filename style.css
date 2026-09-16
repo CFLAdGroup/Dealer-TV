@@ -1,0 +1,347 @@
+/* =========================================
+   DEALER TV — BASE TEMPLATE
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #071018;
+    --dark: #0d1822;
+    --panel: #101d28;
+    --white: #ffffff;
+    --muted: #b7c0c7;
+    --line: rgba(255, 255, 255, 0.22);
+    --kia-red: #c8102e;
+}
+
+body {
+    background: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--white);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+
+/* =========================================
+   MAIN TV FRAME
+   ========================================= */
+
+.app {
+    width: min(1200px, 100%);
+}
+
+.tv-template {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--black);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================
+   TOP BAR
+   ========================================= */
+
+.top-bar {
+    height: 9%;
+    min-height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3%;
+    background: rgba(4, 12, 18, 0.96);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+    z-index: 5;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.kia-logo {
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.dealer-name {
+    font-size: clamp(12px, 1.35vw, 20px);
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.warranty {
+    background: white;
+    color: #111;
+    padding: 7px 22px;
+    text-align: center;
+    font-size: clamp(9px, 1vw, 14px);
+    font-weight: 800;
+    line-height: 0.95;
+    transform: skew(-12deg);
+}
+
+.warranty strong {
+    font-size: 1.15em;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+.main-content {
+    height: 74%;
+    display: grid;
+    grid-template-columns: 72% 28%;
+}
+
+
+/* =========================================
+   VIDEO AREA
+   ========================================= */
+
+.video-area {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(135deg, #24323d, #0a1117);
+}
+
+.video-area video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
+/* Dark gradient over video */
+
+.video-overlay {
+    display: none;
+}
+
+
+/* Headline */
+
+.video-overlay {
+    position: absolute;
+    left: 5%;
+    top: 12%;
+    width: 45%;
+    z-index: 2;
+}
+
+.headline {
+    font-size: clamp(24px, 4vw, 56px);
+    line-height: 0.98;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: white;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.45);
+}
+
+.headline::after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 4px;
+    background: var(--kia-red);
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   INFORMATION PANEL
+   ========================================= */
+
+.info-panel {
+    background:
+        linear-gradient(
+            150deg,
+            #13212c,
+            #071018 75%
+        );
+
+    padding: 9% 9%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.info-panel > * {
+    position: relative;
+    z-index: 2;
+}
+
+.info-panel::before {
+    content: "";
+    position: absolute;
+    left: -55px;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        var(--panel) 0%,
+        var(--black) 100%
+    );
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+}
+
+
+.vehicle-name {
+    font-size: clamp(20px, 2.4vw, 36px);
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: clamp(8px, 0.9vw, 13px);
+    letter-spacing: 4px;
+    line-height: 1.5;
+    max-width: 220px;
+    margin-bottom: 25px;
+}
+
+
+/* =========================================
+   OFFER BOX
+   ========================================= */
+
+.offer-box {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 7% 6%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.offer-label {
+    font-size: clamp(8px, 0.8vw, 12px);
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    color: #d6dce0;
+}
+
+.offer {
+    font-size: clamp(26px, 3vw, 48px);
+    font-weight: 800;
+    line-height: 0.95;
+    white-space: normal;
+}
+
+.offer-sub {
+    font-size: clamp(13px, 1.35vw, 20px);
+    font-weight: 700;
+    margin-top: 6px;
+}
+
+.fine-print {
+    margin-top: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #111;
+    padding: 9px 8px;
+    font-size: clamp(7px, 0.7vw, 10px);
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   FEATURES
+   ========================================= */
+
+.features {
+    height: 24%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background:
+        linear-gradient(
+            90deg,
+            #111a21,
+            #18232b,
+            #111a21
+        );
+    border-top: 1px solid var(--line);
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px 10px;
+    position: relative;
+}
+
+.feature:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 55%;
+    width: 1px;
+    background: var(--line);
+}
+
+.feature span {
+    font-size: clamp(13px, 1.5vw, 22px);
+    margin-bottom: 8px;
+}
+
+.feature strong {
+    font-size: clamp(8px, 0.85vw, 12px);
+    letter-spacing: 1.5px;
+}
+
+.feature small {
+    font-size: clamp(7px, 0.75vw, 11px);
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .dealer-name {
+        display: none;
+    }
+
+    .brand {
+        gap: 10px;
+    }
+
+    .warranty {
+        padding: 5px 12px;
+    }
+
+}

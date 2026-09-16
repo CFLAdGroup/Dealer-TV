@@ -1,0 +1,269 @@
+/* =========================================
+   DEALER TV — CONTENT BUILDER
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --black: #071018;
+    --dark: #0d1822;
+    --panel: #101d28;
+    --panel-light: #172530;
+    --white: #ffffff;
+    --muted: #9daab3;
+    --line: rgba(255, 255, 255, 0.14);
+    --accent: #c8102e;
+}
+
+body {
+    background: #080c10;
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+}
+
+/* =========================================
+   BUILDER
+   ========================================= */
+
+.builder {
+    min-height: 100vh;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.builder-header {
+    height: 80px;
+    background: #050b10;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+}
+
+.builder-title {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.builder-subtitle {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.builder-status {
+    border: 1px solid var(--line);
+    padding: 8px 18px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+.builder-content {
+    display: grid;
+    grid-template-columns: 390px 1fr;
+    min-height: calc(100vh - 80px);
+}
+
+/* =========================================
+   EDITOR PANEL
+   ========================================= */
+
+.editor-panel {
+    background: var(--dark);
+    border-right: 1px solid var(--line);
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.editor-panel h2 {
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.editor-panel label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    margin-bottom: 7px;
+    margin-top: 18px;
+}
+
+.editor-panel input,
+.editor-panel select,
+.editor-panel textarea {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--white);
+    padding: 11px 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    border-radius: 2px;
+    outline: none;
+}
+
+.editor-panel input:focus,
+.editor-panel select:focus,
+.editor-panel textarea:focus {
+    border-color: rgba(255, 255, 255, 0.45);
+}
+
+.editor-panel select {
+    cursor: pointer;
+}
+
+.editor-panel textarea {
+    min-height: 65px;
+    resize: vertical;
+}
+
+/* =========================================
+   SECTION LABELS
+   ========================================= */
+
+.section-label {
+    margin-top: 28px;
+    margin-bottom: -3px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* =========================================
+   FEATURES
+   ========================================= */
+
+.feature-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.feature-row input {
+    margin: 0;
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+    padding-bottom: 20px;
+}
+
+button {
+    border: 0;
+    background: var(--accent);
+    color: white;
+    padding: 13px 18px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(1.15);
+}
+
+button.secondary {
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+}
+
+/* =========================================
+   PREVIEW PANEL
+   ========================================= */
+
+.preview-panel {
+    background:
+        radial-gradient(
+            circle at center,
+            #18232b 0%,
+            #0b1117 45%,
+            #080c10 100%
+        );
+    padding: 35px;
+}
+
+.preview-header {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+.preview-panel {
+    background:
+        radial-gradient(
+            circle at center,
+            #18232b 0%,
+            #0b1117 45%,
+            #080c10 100%
+        );
+    padding: 35px;
+    overflow: auto;
+}
+
+.preview-header {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 20px;
+}
+
+#tvPreview {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 16 / 9;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--line);
+    background: #050b10;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .builder-content {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .preview-panel {
+        padding: 20px;
+    }
+}

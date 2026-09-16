@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealer TV — Content Builder</title>
+    <link rel="stylesheet" href="builder.css">
+</head>
+
+<body>
+
+    <main class="builder">
+
+        <header class="builder-header">
+            <div>
+                <div class="builder-title">DEALER TV</div>
+                <div class="builder-subtitle">CONTENT BUILDER</div>
+            </div>
+
+            <div class="builder-status">
+                DRAFT
+            </div>
+        </header>
+
+        <section class="builder-content">
+
+            <div class="editor-panel">
+
+                <h2>Create / Edit Content</h2>
+
+                <label for="contentSelect">Content</label>
+                <select id="contentSelect"></select>
+
+                <label for="contentType">Content Type</label>
+                <input id="contentType" type="text" readonly>
+
+                <label for="contentName">Name</label>
+                <input id="contentName" type="text">
+
+                <label for="headline">Headline</label>
+                <input id="headline" type="text">
+
+                <label for="tagline">Tagline</label>
+                <input id="tagline" type="text">
+
+                <div class="section-label">Offer</div>
+
+                <label for="offerLabel">Offer Label</label>
+                <input id="offerLabel" type="text">
+
+                <label for="offer">Main Offer</label>
+                <input id="offer" type="text">
+
+                <label for="offerSub">Offer Details</label>
+                <input id="offerSub" type="text">
+
+                <label for="finePrint">Fine Print</label>
+                <textarea id="finePrint"></textarea>
+
+                <div class="section-label">Features</div>
+
+                <div class="feature-row">
+                    <input id="feature1a" type="text">
+                    <input id="feature1b" type="text">
+                </div>
+
+                <div class="feature-row">
+                    <input id="feature2a" type="text">
+                    <input id="feature2b" type="text">
+                </div>
+
+                <div class="feature-row">
+                    <input id="feature3a" type="text">
+                    <input id="feature3b" type="text">
+                </div>
+
+                <div class="feature-row">
+                    <input id="feature4a" type="text">
+                    <input id="feature4b" type="text">
+                </div>
+
+                <div class="buttons">
+                    <button id="saveButton">SAVE CHANGES</button>
+                    <button id="resetButton" class="secondary">RESET</button>
+                </div>
+
+            </div>
+
+            <div class="preview-panel">
+
+                <div class="preview-header">
+                    LIVE PREVIEW
+                </div>
+
+                <iframe
+    id="tvPreview"
+    src="index.html?preview=true"
+    title="Dealer TV Preview">
+</iframe>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="content.js"></script>
+    <script src="builder.js"></script>
+
+</body>
+</html>
