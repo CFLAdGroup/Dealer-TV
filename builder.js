@@ -21,6 +21,27 @@ const preview = document.getElementById("tvPreview");
 
 
 // -----------------------------------------
+// Load saved content
+// -----------------------------------------
+
+const savedContent = localStorage.getItem("dealerTVContent");
+
+if (savedContent) {
+    try {
+        const parsedContent = JSON.parse(savedContent);
+
+        parsedContent.forEach((savedItem, index) => {
+            if (content[index]) {
+                content[index] = savedItem;
+            }
+        });
+    } catch (error) {
+        console.error("Could not load saved content:", error);
+    }
+}
+
+
+// -----------------------------------------
 // Populate content dropdown
 // -----------------------------------------
 
@@ -124,13 +145,70 @@ function updatePreview() {
 
 
 // -----------------------------------------
+// Save current content
+// -----------------------------------------
+
+function saveCurrentContent() {
+
+    const index = Number(contentSelect.value);
+    const item = getEditorData();
+
+    content[index] = item;
+
+    localStorage.setItem(
+        "dealerTVContent",
+        JSON.stringify(content)
+    );
+
+    contentSelect.options[index].textContent = item.name;
+
+    alert("Changes saved.");
+
+}
+
+
+// -----------------------------------------
+// Reset saved content
+// -----------------------------------------
+
+function resetContent() {
+
+    localStorage.removeItem("dealerTVContent");
+
+    location.reload();
+
+}
+
+
+// -----------------------------------------
+// Save button
+// -----------------------------------------
+
+document.getElementById("saveButton").addEventListener("click", () => {
+
+    saveCurrentContent();
+
+});
+
+
+// -----------------------------------------
+// Reset button
+// -----------------------------------------
+
+document.getElementById("resetButton").addEventListener("click", () => {
+
+    resetContent();
+
+});
+
+
+// -----------------------------------------
 // Content selection
 // -----------------------------------------
 
 contentSelect.addEventListener("change", () => {
 
     loadContent(Number(contentSelect.value));
-
     updatePreview();
 
 });
@@ -164,6 +242,7 @@ featureFields.forEach(fields => {
 
 });
 
+
 editableFields.forEach(field => {
 
     field.addEventListener("input", updatePreview);
@@ -178,7 +257,6 @@ editableFields.forEach(field => {
 preview.addEventListener("load", () => {
 
     loadContent(0);
-
     updatePreview();
 
 });

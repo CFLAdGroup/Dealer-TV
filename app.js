@@ -15,6 +15,23 @@ const featureElements = document.querySelectorAll(".feature");
 
 let currentContent = 0;
 
+// Load saved dealer content
+const savedContent = localStorage.getItem("dealerTVContent");
+
+if (savedContent) {
+    try {
+        const parsedContent = JSON.parse(savedContent);
+
+        parsedContent.forEach((savedItem, index) => {
+            if (content[index]) {
+                content[index] = savedItem;
+            }
+        });
+    } catch (error) {
+        console.error("Could not load saved content:", error);
+    }
+}
+
 
 function updateTemplate(item) {
 
