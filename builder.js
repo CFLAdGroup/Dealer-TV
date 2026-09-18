@@ -1,7 +1,9 @@
 const contentSelect = document.getElementById("contentSelect");
 
-const contentType = document.getElementById("contentType");
-const contentName = document.getElementById("contentName");
+const contentModel = document.getElementById("contentModel");
+const contentYear = document.getElementById("contentYear");
+const contentActive = document.getElementById("contentActive");
+
 const headline = document.getElementById("headline");
 const tagline = document.getElementById("tagline");
 
@@ -30,14 +32,34 @@ if (savedContent) {
     try {
         const parsedContent = JSON.parse(savedContent);
 
-        parsedContent.forEach((savedItem, index) => {
-            if (content[index]) {
-                content[index] = savedItem;
-            }
-        });
+       parsedContent.forEach((savedItem, index) => {
+    if (content[index]) {
+        content[index] = {
+            ...content[index],
+            ...savedItem
+        };
+    }
+});
     } catch (error) {
         console.error("Could not load saved content:", error);
     }
+}
+
+
+// -----------------------------------------
+// Get display name
+// -----------------------------------------
+
+function getDisplayName(item) {
+    if (item.type === "vehicle") {
+        return item.model;
+    }
+
+    if (item.type === "service") {
+        return item.service;
+    }
+
+    return "UNTITLED CONTENT";
 }
 
 
@@ -50,7 +72,7 @@ content.forEach((item, index) => {
     const option = document.createElement("option");
 
     option.value = index;
-    option.textContent = item.name;
+    option.textContent = getDisplayName(item);
 
     contentSelect.appendChild(option);
 
@@ -65,8 +87,17 @@ function loadContent(index) {
 
     const item = content[index];
 
-    contentType.value = item.type;
-    contentName.value = item.name;
+
+    contentActive.checked = item.active !== false;
+
+    if (item.type === "vehicle") {
+        contentModel.value = item.model;
+        contentYear.value = item.year;
+    } else {
+        contentModel.value = item.service;
+        contentYear.value = "";
+    }
+
     headline.value = item.headline;
     tagline.value = item.tagline;
 
@@ -97,10 +128,13 @@ function loadContent(index) {
 function getEditorData() {
 
     const index = Number(contentSelect.value);
-
     const item = { ...content[index] };
+    item.active = contentActive.checked;
 
-    item.name = contentName.value;
+    if (item.type === "vehicle") {
+        item.year = contentYear.value;
+    }
+
     item.headline = headline.value;
     item.tagline = tagline.value;
 
@@ -160,7 +194,8 @@ function saveCurrentContent() {
         JSON.stringify(content)
     );
 
-    contentSelect.options[index].textContent = item.name;
+    contentSelect.options[index].textContent =
+        getDisplayName(item);
 
     alert("Changes saved.");
 
@@ -220,7 +255,8 @@ contentSelect.addEventListener("change", () => {
 
 const editableFields = [
 
-    contentName,
+    contentYear,
+    contentActive,
     headline,
     tagline,
     offerLabel,

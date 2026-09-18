@@ -15,6 +15,7 @@ const featureElements = document.querySelectorAll(".feature");
 
 let currentContent = 0;
 
+
 // Load saved dealer content
 const savedContent = localStorage.getItem("dealerTVContent");
 
@@ -31,11 +32,15 @@ if (savedContent) {
         console.error("Could not load saved content:", error);
     }
 }
-
+// Build playlist from active content
+let playlist = content.filter(item => item.active !== false);
 
 function updateTemplate(item) {
 
-    vehicleName.textContent = item.name;
+   vehicleName.textContent =
+    item.type === "vehicle"
+        ? `${item.year} ${item.make} ${item.model}`
+        : item.service;
     tagline.textContent = item.tagline;
     offerLabel.textContent = item.offerLabel;
     offer.textContent = item.offer;
@@ -61,7 +66,7 @@ function updateTemplate(item) {
 
 function playContent(index) {
 
-    const item = content[index];
+    const item = playlist[index];
 
     updateTemplate(item);
 
@@ -79,7 +84,7 @@ function playNextContent() {
 
     currentContent++;
 
-    if (currentContent >= content.length) {
+    if (currentContent >= playlist.length) {
         currentContent = 0;
     }
 

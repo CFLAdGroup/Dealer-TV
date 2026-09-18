@@ -84,18 +84,17 @@ body {
 }
 
 .warranty {
-    background: white;
-    color: #111;
-    padding: 7px 22px;
-    text-align: center;
-    font-size: clamp(9px, 1vw, 14px);
-    font-weight: 800;
-    line-height: 0.95;
-    transform: skew(-12deg);
+    background: transparent;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.warranty strong {
-    font-size: 1.15em;
+.warranty img {
+    display: block;
+    width: 215px;
+    height: auto;
 }
 
 
@@ -272,7 +271,7 @@ body {
    ========================================= */
 
 .features {
-    height: 24%;
+    height: 17%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     background:
